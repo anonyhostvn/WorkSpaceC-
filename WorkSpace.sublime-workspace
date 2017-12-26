@@ -1,0 +1,280 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"file",
+				"file_base_name"
+			],
+			[
+				"drop",
+				"dropdown-content"
+			],
+			[
+				"butt",
+				"button"
+			],
+			[
+				"trans",
+				"transition"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"bac",
+				"background-image"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"button",
+				"button_sign"
+			],
+			[
+				"Font_",
+				"font_4"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"inline",
+				"inline-flex"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pakag",
+		"selected_items":
+		[
+			[
+				"pakag",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"paka",
+				"Install Package Control"
+			],
+			[
+				"set",
+				"Set Syntax: C++"
+			],
+			[
+				"",
+				"Build With: C++ Single File"
+			],
+			[
+				"Pac",
+				"Set Syntax: Pascal"
+			],
+			[
+				"Pake",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/anony/AppData/Roaming/Sublime Text 3/Packages/PackageResourceViewer/PackageResourceViewer.sublime-settings",
+		"/C/Users/anony/Desktop/NUMBER.out",
+		"/C/Users/anony/Desktop/NUMBER.cpp",
+		"/C/Users/anony/Downloads/graph.txt",
+		"/C/Users/anony/AppData/Local/Temp/7zOCEB92940/DCPP.pas",
+		"/C/Users/anony/AppData/Local/Temp/7zO067EB957/PQUERY.cpp",
+		"/D/Tool/Web3/Contestant/NGUYEN HAI LONG/LANDSEL.cpp",
+		"/C/Users/anony/AppData/Local/Temp/7zO89E5ADEA/PQUERY.cpp",
+		"/C/Users/anony/AppData/Local/Temp/7zO89EABD7A/PQUERY.cpp",
+		"/D/Tool/WorkSpace/WorkSpaceC++/PQUERY.inp",
+		"/C/Users/anony/AppData/Local/Temp/7zO0C221B81/PQUERY.cpp",
+		"/C/Users/anony/Desktop/NUMBER.inp",
+		"/D/Tool/Web3/www/contests/tests/Cube/Test00/Cube.inp",
+		"/D/Tool/Web3/www/contests/tests/NUMBER/$NUMBER01/NUMBER.inp",
+		"/D/Tool/Web3/www/contests/tests/NUMBER/$NUMBER02/NUMBER.inp",
+		"/D/Tool/Web3/www/contests/tests/NUMBER/$NUMBER02/NUMBER.out",
+		"/D/Tool/Web3/www/contests/tests/NUMBER/$NUMBER01/NUMBER.out",
+		"/D/Tool/Web3/Contestant/NGUYEN HAI LONG/NUMBER.cpp",
+		"/C/Users/anony/AppData/Local/Temp/7zO8AD17CB7/NUMBER.pas",
+		"/D/Tool/Web3/www/contests/tests/Cube/Test00/Cube.out",
+		"/C/Users/anony/Downloads/BRIDGES.pas",
+		"/D/Tool/WorkSpace/WorkSpaceC++/operator.cpp",
+		"/D/Tool/Web3/Contestant/NGUYEN HAI LONG/BRIDGES.pas",
+		"/C/Users/anony/Downloads/PUNCH.pas",
+		"/C/Users/anony/AppData/Local/Temp/7zO47164A40/CPAIRS.cpp",
+		"/D/Tool/WorkSpace/WorkSpaceC++/clrtab.cpp",
+		"/D/Tool/IDE/3.0.2/bin/i386-win32/REFORM.pas",
+		"/C/Users/anony/AppData/Local/Temp/7zO8D06825F/NUMBER.pas",
+		"/D/Tool/WorkSpace/WorkSpaceC++/CC.cpp",
+		"/C/Users/anony/AppData/Roaming/Sublime Text 3/Packages/User/runcpp.sublime-build",
+		"/C/Program Files/Sublime Text 3/sublime.py",
+		"/C/Users/anony/AppData/Roaming/Sublime Text 3/Packages/C++/C++ Single File.sublime-build",
+		"/C/Program Files/Sublime Text 3/sublime_plugin.py",
+		"/C/Program Files/Sublime Text 3/Packages/Batch File.sublime-package",
+		"/C/Program Files/Sublime Text 3/Packages/Makefile.sublime-package",
+		"/C/Program Files/Sublime Text 3/Packages/ShellScript.sublime-package",
+		"/C/Users/anony/AppData/Roaming/Sublime Text 3/Packages/User/runcpp2.sublime-build",
+		"/D/Tool/Sublime Text 3/Packages/Scala.sublime-package",
+		"/D/Tool/WorkSpace/WorkSpaceC++/CC.inp",
+		"/C/Users/anony/AppData/Roaming/Sublime Text 3/Packages/User/untitled.sublime-build",
+		"/C/Program Files/Sublime Text 3/Packages/C++.sublime-package",
+		"/C/Users/anony/Downloads/degree.pas",
+		"/D/Tool/Web3/www/index.php",
+		"/D/Tool/Web3/www/HP/nhon.css",
+		"/D/Tool/Web3/www/logs.php",
+		"/D/Tool/Web3/www/CSS_HY/style.css",
+		"/D/Tool/Web3/www/CSS_HY/clear.css",
+		"/D/Tool/Web3/www/CSS_HY/datatable.css"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/runcpp.sublime-build",
+	"project": "WorkSpace.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

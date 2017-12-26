@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+#define forinc(i,a,b) for (int i = a ; i <= b ; i ++)
+#define fordec(i,a,b) for (int i = a ; i >= b ; i --)
+#define forv(j,u) for (int j = 0 ; j < u.size() ; j++)
+#define pb push_back
+#define pf push_front
+#define fi first
+#define se second
+#define mk make_pair
+#define pii pair<int,int>
+
+template <class _T> bool maximize(_T &a , _T b) {return a < b ? a = b , 1 : 0 ; }
+template <class _T> bool minimize(_T &a , _T b) {return a > b ? a = b , 1 : 0 ; }
+
+const int ooit = 2e9 ;
+const long long ooll = 1e18 ;
+
+using namespace std ;
+
+string st0 , st1 , st2 , st3 ;
+int L0 , L1 , L2 , L3 ;
+
+void prepare() {
+    st0 = "What are you doing at the end of the world? Are you busy? Will you save us?" ; L0 = st0.length() ;
+    st1 = "What are you doing while sending \"" ; L1 = st1.length() ;
+    st2 = "\"? Are you busy? Will you send \"" ; L2 = st2.length() ;
+    st3 = "\"\?\"" ; L3 = st3.length() ;
+}
+
+long long power(int x , int i) {
+    if (i == 0) return 1 ;
+    if (i == 1) return x ;
+    long long tmp = power(x , i / 2) ;
+
+}
+
+long long getF(int i) {
+    return (long long) ((long long ) 2 * i + 1) * k +
+}
+
+int main () {
+    prepare() ; cout << st3 << endl ;
+    return 0 ;
+}
