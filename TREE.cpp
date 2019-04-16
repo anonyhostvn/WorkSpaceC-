@@ -8,57 +8,79 @@
 #define se second
 #define mk make_pair
 #define pii pair<int,int>
-#define ooll (long long) 1e15
-#define ooit (int) 2e9
 
 template <class _T> bool maximize(_T &a , _T b) {return a < b ? a = b , 1 : 0 ; }
 template <class _T> bool minimize(_T &a , _T b) {return a > b ? a = b , 1 : 0 ; }
 
+const int ooit = 2e9 ;
+const long long ooll = 1e15 ;
+
 using namespace std ;
 
-#define maxN 5005
+#define maxN 100005
 
-int n , a[maxN] ;
-vector<int> ke[maxN] ;
+int n , k ;
+vector<pii> ke[maxN] ;
+bool import[maxN] ;
 
 void enter () {
-    cin >> n ;
-    forinc(i,1,n) cin >> a[i] ;
+    cin >> n >> k ;
+    forinc(i,1,k) {
+        int x ; cin >> x ;
+        import[x] = true ;
+    }
     forinc(i,1,n-1) {
-        int u , v ; cin >> u >> v ;
-        ke[u].push_back(v) ;
-        ke[v].push_back(u) ;
+        int u , v , c ; cin >> u >> v >> c ;
+        ke[u].push_back({v,c}) ;
+        ke[v].push_back({u,c}) ;
     }
 }
 
-long long f[maxN][maxN] ;
+int d[maxN] ;
 
-void visit(int u , int p) {
-    int cnt = 0 , con[2] ;
-    for (auto v : ke[u]) if (v != p) {
-        con[cnt ++] =  v ;
-        visit(v,u) ;
+void bfs (int start) {
+    forinc(i,1,n) d[i] = -1 ;
+    queue<int> q ; q.push(start) ; d[start] = 0 ;
+
+    while (!q.empty()) {
+        int u = q.front() ; q.pop() ;
+        for (auto tmp : ke[u]) if (d[tmp.fi] == -1) d[tmp.fi] = d[u] + tmp.se , q.push(tmp.fi) ;
     }
-    if (cnt == 0) f[u][0] = abs(a[u] - 0) , f[u][1] = abs(a[u] - 1) ;
-    else if (cnt == 1) forinc(i,0,n) f[u][i] = min(ooll,f[con[0]][i] + abs(a[u] - i)) ;
-    else if (cnt == 2)
-        forinc(i,0,n)
-            forinc(j,0,i) minimize(f[u][i],f[con[0]][j] + f[con[1]][i-j] + abs(a[u]-i)) ;
+}
+
+int max_path(int &adj) {
+    forinc(i,1,n) if (import[i]) {bfs(i) ; break ; }
+
+    int res = 0 ;
+    forinc(i,1,n) if (import[i] && maximize(res,d[i])) adj = i ;
+
+    bfs(adj) ; res = 0 ;
+    forinc(i,1,n) if (import[i] && maximize(res,d[i])) adj = i ;
+    return res ;
+
+}
+
+long long res = 0 ;
+int cal(int u, int p) {
+    int cre = import[u] ;
+    for (auto v : ke[u]) if (v.fi != p) {
+        int c = cal(v.fi,u) ;
+        if (c > 0) res += v.se ;
+        cre += c ;
+    }
+    return (cre > 0) ;
 }
 
 void process () {
-    forinc(i,0,n) forinc(j,0,n) f[i][j] = ooll ;
-    visit(1,-1) ;
-    long long res = ooll ;
-    forinc(i,0,n) minimize(res,f[1][i]) ;
-    //forinc(i,1,n) cout << f[1][i] << " " ; cout << endl ;
-    cout << res << endl ;
+    int u = 0 , sub = max_path(u) ;
+    cal(u,-1) ;
+    cout << res * 2 - sub << endl ;
 }
 
 int main () {
-    freopen("TREE.inp" , "r" , stdin) ;
+    freopen("TREE.inp" , "r" , stdin ) ;
     freopen("TREE.out" , "w" , stdout) ;
     enter () ;
-    process() ;
+    process () ;
     return 0 ;
 }

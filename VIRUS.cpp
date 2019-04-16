@@ -17,10 +17,41 @@ const long long ooll = 1e15 ;
 
 using namespace std ;
 
+#define maxM 3005
+
+int n , m , a[maxM] ;
+string st ;
+
 void enter () {
-    cin
+    cin >> n ;
+    cin >> st ;
+    m = st.length() ;
+    forinc(i,1,m) a[i] = (int) st[i-1] - (int) 'a' ;
+}
+
+#define maxN 3005
+
+int f[maxN] , ans[maxN] ;
+
+void process () {
+    forinc(len,1,m) {
+        f[0] = 0 ;
+        for (int i = 1 ; i + len <= m ; i ++ ) {
+            f[i] = f[i-1] + (a[i] != a[i+len]) ;
+            if (i >= len) maximize(ans[f[i] - f[i-len]] , len) ;
+        }
+    }
+
+    forinc(i,1,m) maximize(ans[i] , ans[i-1]) ;
+    forinc(i,1,n) {
+        int k ; cin >> k ; cout << ans[k] << endl ;
+    }
 }
 
 int main () {
+    freopen("VIRUS.inp" , "r" , stdin) ;
+    freopen("VIRUS.out" , "w" , stdout) ;
+    enter () ;
+    process () ;
     return 0 ;
 }

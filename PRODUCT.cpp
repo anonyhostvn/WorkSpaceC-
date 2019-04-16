@@ -19,10 +19,8 @@ using namespace std ;
 
 const int base = 1000000007 ;
 
-#define maxA 100005
-
 int n , q ;
-int g[maxA] ;
+map<int,int> g ;
 
 void factories(int x){
     for (int i = 2 ; i <= (int) sqrt(x) ; i ++) if (x % i == 0) {
@@ -46,15 +44,15 @@ vector<pii> a ;
 int m ;
 
 void prepare () {
-    a.emplace_back(1,1) ;
-    forinc(i,2,100000)
-        if (g[i] > 0) a.emplace_back(i,g[i]) ;
+    a.push_back({1,1}) ;
+    for (auto tmp : g)
+        a.push_back({tmp.fi , tmp.se})  ;
     m = a.size() - 1 ;
 }
 
 #define maxN 5005
 
-long long f[maxN][maxN] ;
+long long f[maxN][maxN] , gsum[maxN] ;
 
 long long power(int x , int n) {
     if (n == 0) return 1 ;
@@ -64,11 +62,9 @@ long long power(int x , int n) {
 }
 
 void DP_trau() {
-    f[0][0] = 1 ;
-    forinc(i,0,m-1) forinc(j,0,200) if (f[i][j])
-        forinc(k,0,a[i+1].se)
-            if (j + k <= 200)
-                f[i+1][j+k] += (f[i][j] * (power(a[i+1].fi,k))) , f[i+1][j+k] %= base ; else break ;
+    f[0][0] = 1 ; gsum[0] = 1 ; forinc(i,1,5000) gsum[i] = gsum[i-1] + f[0][i] ;
+    forinc(i,0,m-1) forinc(j,0,5000) if (f[i][j])
+        forinc(k,0,a[i+1].se) if (j + k <= 5000) f[i+1][j+k] += (f[i][j] * (power(a[i+1].fi,k))) , f[i+1][j+k] %= base ; else break ;
 }
 
 void process () {
@@ -80,8 +76,8 @@ void process () {
 }
 
 int main () {
-    //freopen("PRODUCT.inp" , "r" , stdin) ;
-    //freopen("PRODUCT.out" , "w" , stdout) ;
+    freopen("PRODUCT.inp" , "r" , stdin) ;
+    freopen("PRODUCT.out" , "w" , stdout) ;
 
     enter () ;
     if (n > 5000) return 0 ;

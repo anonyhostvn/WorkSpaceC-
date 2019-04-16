@@ -57,6 +57,7 @@ void remove_black_edge() {
         if (lab[u] != lab[v]) nxt[lab[u]].emplace_back(lab[v]) , nxt[lab[v]].emplace_back(lab[u]) ;
     }
     n = cnt_lab ;
+    cout << cnt_lab << endl ;
 }
 
 ///____________________________________________________________________________________________________________________________________________________
@@ -181,6 +182,8 @@ void process () {
     remove_black_edge() ;
     Build_New_Graph() ;
 
+    int res = 0 ;
+
     while (q--) {
         int a = fastRead() , b = fastRead() , c = fastRead() , d = fastRead() ;
         cout << solve(lab[a],lab[b],lab[c],lab[d]) << endl ;
@@ -188,8 +191,8 @@ void process () {
 }
 
 int main () {
-    freopen("TWOPATHS.inp" , "r" , stdin) ;
-    //freopen("TWOPATHS.out" , "w" , stdout) ;
+    freopen("input.txt" , "r" , stdin) ;
+    freopen("TWOPATHS.out" , "w" , stdout) ;
     enter () ;
     process () ;
     return 0 ;

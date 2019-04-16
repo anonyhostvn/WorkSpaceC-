@@ -26,22 +26,34 @@ void enter () {
 
 long long f[maxN][maxN] ;
 
+void process1 () {
+    forinc(i,0,n) forinc(j,0,n) f[i][j] = -1 ;
+    f[1][1] = a[1] ;
+    forinc(i,2,n) forinc(j,0,n) {
+        if (j > 0 && f[i-1][j-1] >= 0 && f[i-1][j-1] + a[i] >= 0) maximize(f[i][j] , f[i-1][j-1] + a[i]) ;
+        if (i < n && f[i-1][j] >= T) maximize(f[i][j] , f[i-1][j] - T) ;
+    }
+    forinc(i,0,n) if (f[n][i] >= 0) {cout << i << endl ; return ; }
+    cout << -1 << endl ;
+}
+
 void process () {
-    forinc(i,1,n) forinc(j,1,n) f[i][j] = -ooll ;
+    forinc(i,1,n) forinc(j,1,n) f[i][j] = -1 ;
     f[1][1] = a[1] ;
     forinc(i,1,n) forinc(j,1,i) if (f[i][j] >= 0) {
         if (i + 1 < n) maximize(f[i+1][j],f[i][j] - T) ;
         maximize(f[i+1][j+1],f[i][j] + a[i+1]) ;
     }
 
-    forinc(i,1,n) if (f[n][i] >= 0) { cout << i << endl ; return ;
-    } cout << -1 << endl ;
+    forinc(i,1,n) if (f[n][i] >= 0) { cout << i << endl ; return ; }
+    cout << -1 << endl ;
 }
 
 int main () {
+    system("pause") ;
     freopen("GAMESHOW.inp" , "r" , stdin) ;
     freopen("GAMESHOW.out" , "w" , stdout) ;
     enter () ;
-    process () ;
+    process1 () ;
     return 0 ;
 }

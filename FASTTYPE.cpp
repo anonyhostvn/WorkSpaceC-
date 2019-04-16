@@ -17,37 +17,42 @@ const long long ooll = 1e15 ;
 
 using namespace std ;
 
-#define maxQ 200005
-
-int n , k , m ;
-string s ;
-struct node {
-    int a , b , c ;
-} q[maxQ] ;
+int k , m ;
+string st ;
 
 void enter () {
     cin >> k >> m ;
-    cin >> s ;
-    cin >> n ;
-    forinc(i,1,n) scanf("%d%d%d" , &q[i].a , &q[i].b , &q[i].c) ;
-    //forinc(i,1,n) cout << q[i].a << " " << q[i].b << " " << q[i].c << endl ;
+    cin >> st ;
 }
 
-int solve(int id) {
-    fordec(i,n,1)
-        if (q[i].c < id && id <= q[i].c + q[i].b - q[i].a) id = q[i].a + id - q[i].c ;
-        else if (id > q[i].c + q[i].b - q[i].a) id -= q[i].b - q[i].a ;
-    return id ;
+void active(int a , int b , int c) {
+    int L = st.length() ;
+    string sta = "" , stb = "" ;
+    forinc(i,a,b-1) sta.push_back(st[i]) ;
+    forinc(i,c,L-1) stb.push_back(st[i]) ;
+    forinc(i,c,L-1) st.pop_back() ;
+
+    for (auto c : sta) st.push_back(c) ;
+    for (auto c : stb) st.push_back(c) ;
+    while (st.length() > m) st.pop_back() ;
 }
 
 void process () {
-    forinc(i,1,k) cout << s[solve(i)-1] ;
+    int n = 0 ; cin >> n ;
+    forinc(i,1,n) {
+        int a , b , c ;
+        cin >> a >> b >> c ;
+        active(a,b,c) ;
+    }
+
+    forinc(i,0,k-1) cout << st[i] ;
 }
 
 int main () {
     freopen("FASTTYPE.inp" , "r" , stdin) ;
     freopen("FASTTYPE.out" , "w" , stdout) ;
-    enter ()  ;
+    ios_base::sync_with_stdio(false) ; cin.tie(nullptr) ;
+    enter () ;
     process () ;
     return 0 ;
 }

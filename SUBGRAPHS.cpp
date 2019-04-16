@@ -36,7 +36,8 @@ int node(int idx , int s) {return (idx) ? 5 * n + s : n + s ; }
 
 void build_tree (int s , int l , int r) {
     if (l == r)  {
-        add(node(0,s) , l , 0) ; add(l , node(1,s) , 0) ;
+        add(node(0,s) , l , 0) ;
+        add(l , node(1,s) , 0) ;
         return ;
     }
 
@@ -65,7 +66,7 @@ bool spoil[10 * maxN] ;
 int d[10 * maxN] , virt[maxN] ;
 
 void dkstra(int start) {
-    forinc(i,1,n) d[i] = ooit ; d[start] = 0 ;
+    forinc(i,1,10 * n) d[i] = ooit ; d[start] = 0 ;
     priority_queue<pii> q ; q.push({0,start}) ;
 
     while (!q.empty()) {
@@ -101,7 +102,7 @@ void process () {
 
 int main () {
     freopen("SUBGRAPHS.inp" , "r" , stdin) ;
-    //freopen("SUBGRAPHS.out" , "w" , stdout) ;
+    freopen("SUBGRAPHS.out" , "w" , stdout) ;
     enter () ;
     process() ;
     return 0 ;

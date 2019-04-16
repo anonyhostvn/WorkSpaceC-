@@ -17,29 +17,38 @@ const long long ooll = 1e15 ;
 
 using namespace std ;
 
-#define maxN 100005
+#define maxN 305
 
-int n , k , a[maxN] ;
+int n , k , a[maxN]  ;
+
+int fastRead() {
+    char c ; int res = 0 ;
+    for (c = getchar() ; c < '0' || c > '9' ; c = getchar()) ;
+    for ( ; c >= '0' && c <= '9' ; c = getchar()) res*= 10 , res += c - '0' ;
+    return res ;
+}
 
 void enter () {
-    cin >> n >> k ;
-    forinc(i,1,n) cin >> a[i] ;
+    n = fastRead() ; k = fastRead() ;
+    forinc(i,1,n) a[i] = fastRead() ;
 }
 
 vector<int> ke[maxN] ;
 
 void prepare () {
     forinc(i,1,n) ke[i].clear() ;
-
     forinc(i,1,n-1)
-        forinc(j,i+1,n) if (abs(a[j]-a[i]) >= k) ke[i].push_back(j) ;
+        forinc(j,i+1,n) if (abs(a[j] - a[i]) >= k) ke[i].push_back(j) ;
 }
 
-int matchX[maxN] , matchY[maxN] , trace [maxN] ;
+int matchX[maxN] , matchY[maxN] , trace[maxN] ;
 
 int Open_Path() {
-    forinc(i,1,n) trace[i] = 0 ;
-    queue<int> q ; forinc(i,1,n) if (!matchX[i]) q.push(i) ;
+    queue<int> q ;
+    forinc(i,1,n) {
+        if (!matchX[i]) q.push(i) ;
+        trace[i] = 0 ;
+    }
 
     while (!q.empty()) {
         int u = q.front() ; q.pop() ;
@@ -53,7 +62,7 @@ int Open_Path() {
     return 0 ;
 }
 
-void Enlarge(int finish) {
+void Enlarger(int finish) {
     do {
         int u = trace[finish] , nxt = matchX[u] ;
         matchX[u] = finish ; matchY[finish] = u ;
@@ -65,8 +74,8 @@ int maximum_matching() {
     forinc(i,1,n) matchX[i] = 0 , matchY[i] = 0 ;
     int finish = 0 ;
     do {
-        finish = Open_Path() ;
-        if (finish > 0) Enlarge(finish) ;
+        finish = Open_Path () ;
+        if (finish > 0) Enlarger(finish) ;
     } while (finish > 0) ;
 
     int cnt = 0 ;
@@ -80,10 +89,9 @@ void process () {
 }
 
 int main () {
-    //freopen("PROSOL.inp" , "r" , stdin) ;
-    //freopen("PROSOL.out" , "w" , stdout) ;
-    int t= 0 ; cin >> t ;
+    freopen("PROSOL.inp" , "r" , stdin) ;
+    freopen("PROSOL.out" , "w" , stdout) ;
+    int t = fastRead() ;
     while (t--) enter () , process () ;
     return 0 ;
 }
-

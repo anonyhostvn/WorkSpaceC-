@@ -19,44 +19,52 @@ using namespace std ;
 
 #define maxN 50005
 
-int n , m , maxL ;
+int n , m , maxC = 0 ;
 vector<pii> ke[maxN] ;
 
+
+int fastRead() {
+    char c ; int res = 0 ;
+    for (c = getchar() ; c < '0' || c > '9' ; c = getchar()) ;
+    for ( ; c >= '0' && c <= '9' ; c = getchar()) res*= 10 , res += c - '0' ;
+    return res ;
+}
+
 void enter () {
-    cin >> n >> m ;
+    n = fastRead() ; m = fastRead() ;
     forinc(i,1,m) {
-        int u , v , c ; cin >> u >> v >> c ;
-        maximize(maxL , c) ;
-        ke[u].push_back({v,c}) ; ke[v].push_back({u,c}) ;
+        int u = fastRead() , v = fastRead() , c = fastRead() ;
+        maximize(maxC,c) ;
+        ke[u].push_back({v,c}) ;
+        ke[v].push_back({u,c}) ;
     }
 }
 
 bool vis[maxN] ;
 
-void dfs(int u , int x) {
+void dfs(int u , int x){
     vis[u] = true ;
-    for (auto tmp : ke[u]) if (!vis[tmp.fi] && tmp.se <= x) dfs(tmp.fi,x) ;
+    for (auto v : ke[u]) if (v.se <= x && !vis[v.fi]) dfs(v.fi,x) ;
 }
 
-bool check(int x) {
+bool Tcheck(int mid) {
     forinc(i,1,n) vis[i] = false ;
-    dfs(1,x) ;
+    dfs(1,mid) ;
     return vis[n] ;
 }
 
 void process () {
-    int l = 0 , r = maxL , res = -1 ;
-    while (l <= r) {
-        int mid = (l+r) / 2 ;
-        if (check(mid)) r = mid - 1 , res = mid ; else l = mid + 1 ;
+    int L = 0 , R = maxC , res = 0 ;
+    while (L <= R) {
+        int mid = (L+R) / 2 ;
+        if (Tcheck(mid)) R = mid - 1 , res = mid ; else L = mid + 1 ;
     }
-
-    if (res > -1) cout << res ; else cout << "NO PATH EXISTS" ; cout << endl ;
+    if (res > 0) cout << res << endl ; else cout << "NO PATH EXISTS" << endl ;
 }
 
 int main () {
-    //freopen("GRAPHR.inp" , "r" , stdin) ;
-    //freopen("GRAPHR.out" , "w" , stdout) ;
+    freopen("GRAPHR.inp" , "r" , stdin) ;
+    freopen("GRAPHR.out" , "w" , stdout) ;
     enter () ;
     process () ;
     return 0 ;

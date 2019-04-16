@@ -35,13 +35,16 @@ struct node {
 } edge[maxM] ;
 
 struct node_{
-    int a , b , pos ;
+    int a , b ;
 } contract[maxC] ;
 
 void enter () {
     n = fastRead() ; m = fastRead() ; c = fastRead() ;
     forinc(i,1,m) edge[i].u = fastRead() , edge[i].v = fastRead() , edge[i].c = fastRead() ;
-    forinc(i,1,c) contract[i].b = fastRead() , contract[i].a = fastRead() , contract[i].pos = i ;
+    forinc(i,1,c) contract[i].b = fastRead() , contract[i].a = fastRead() ;
+    sort(edge + 1 , edge + 1 + m , [] (node a , node b) {
+         return a.c < b.c ;
+         }) ;
 }
 
 int lab[maxN] ;
@@ -57,40 +60,46 @@ void uni(int u , int v) {
     get_root(u) ;
 }
 
-int slt = 0 , S ;
-vector<int> wei_edge ;
+int slt = 0 , wei_edge[maxM] , cnt = 0 ;
 long long f[maxM] ;
 
 void prepare () {
-    forinc(i,1,n) lab[i] = i ; wei_edge.push_back(0) ;
+    forinc(i,1,n) lab[i] = i ;
     forinc(i,1,m) if (get_root(edge[i].u) != get_root(edge[i].v)) {
-        wei_edge.push_back(edge[i].c) ;
+        wei_edge[++cnt] = edge[i].c ;
         uni(edge[i].u , edge[i].v) ;
     }
-    sort(wei_edge.begin() , wei_edge.end()); f[0] = wei_edge[0] ; S = wei_edge.size() - 1 ;
-    forinc(i,1,S) f[i] = f[i-1] + wei_edge[i] ;
-    sort(contract + 1 , contract + 1 + c , [] (node_ p , node_ q){
-         return p.b > q.b ;
-         } ) ;
-    //forinc(i,1,c) cout << contract[i].a << " " << contract[i].b << endl ;
-    slt = n - wei_edge.size() + 1  ;
+
+    sort(wei_edge + 1 , wei_edge + 1 + cnt) ;
+    forinc(i,1,cnt) f[i] = f[i-1] + wei_edge[i] ;
+
+    slt = n - cnt  ;
 }
 
-long long ans[maxC] ;
+int find_(int x , int a) {
+    int l = max(n-a,0) , r = cnt , res = 0 ;
+    while (l <= r) {
+        int mid = (l+r) / 2 ;
+        if (wei_edge[mid] <= x) res = mid ,  l = mid + 1 ; else r = mid - 1 ;
+    }
+    return res ;
+}
 
 void process () {
     prepare () ;
 
     forinc(i,1,c) {
-        while (wei_edge.size() > 1 && wei_edge.back() >= contract[i].b) wei_edge.pop_back() ;
-        if (contract[i].a < slt) ans[contract[i].pos] = -1 ; else {
-            int num_e = max((int) wei_edge.size() - 1 , n - contract[i].a) ;
-            long long res = f[num_e] + (long long ) contract[i].b * (n - num_e) ;
-            ans[contract[i].pos] = res ;
+        if (contract[i].a < slt) printf("-1\n") ;
+        else if (contract[i].a == slt) {
+            long long res = f[cnt] + (long long) contract[i].a * contract[i].b ;
+            printf("%lld\n" , res) ;
+        }
+        else {
+            int nume = find_(contract[i].b,contract[i].a)  ;
+            long long res = f[nume] + (long long) contract[i].b * (n - nume) ;
+            printf("%lld\n" , res) ;
         }
     }
-
-    forinc(i,1,c) cout << ans[i] << endl ; //printf("%lld\n" , &ans[i]) ;
 }
 
 int main () {

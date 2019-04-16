@@ -39,28 +39,25 @@ void enter () {
 #define maxN 3005
 #define base 1000000007
 
-long long gt[maxN] ;
+long long gt[maxN * maxN] ;
 
 void prepare () {
     gt[0] = 1 ;
-    forinc(i,1,3000) gt[i] = gt[i-1] * i , gt[i] %= base ;
-
-    //forinc(i,1,10) cout << gt[i] << endl ;
+    forinc(i,1,R * C) gt[i] = gt[i-1] * i , gt[i] %= base ;
 }
 
-long long g[maxN][maxN] ;
+int g[maxN][maxN] ;
 
 void combinatories () {
     g[0][0] = 1 ;
     g[1][0] = 1 ; g[1][1] = 1 ;
-    forinc(i,2,3000) {
+    forinc(i,2,max(R,C)) {
         g[i][0] = 1 ; g[i][i] = 1 ;
-        forinc(j,1,i-1) g[i][j] = g[i-1][j-1] + g[i-1][j] , g[i][j] %= base ;
+        forinc(j,1,i-1) {
+            g[i][j] = g[i-1][j-1] + g[i-1][j]  ;
+            if (g[i][j] > base) g[i][j] -= base ;
+        }
     }
-
-    //forinc(i,1,10) {
-    //    forinc(j,0,i) cout << g[i][j] << " " ; cout << endl ;
-    //}
 }
 
 long long f[maxN][maxN] ;
@@ -71,11 +68,11 @@ void process () {
     f[h][l] = gt[S - n] ;
 
     forinc(i,h,R) forinc(j,l,C) if (f[i][j] > 0) {
-        if (i + 1 <= R) f[i+1][j] = (f[i][j] * gt[j]) , f[i+1][j] %= base ;
-        if (j + 1 <= C) f[i][j+1] = (f[i][j] * gt[i]) , f[i][j+1] %= base ;
+        if (i + 1 <= R) f[i+1][j] += (f[i][j] * gt[j]) , f[i+1][j] %= base ;
+        if (j + 1 <= C) f[i][j+1] += (f[i][j] * gt[i]) , f[i][j+1] %= base ;
     }
 
-    long long res = f[R][C] ; res *= g[R-h][XTop-1] ; res %= base ; res *= g[C-l][YLeft-1] ;
+    long long res = f[R][C] ; res *= g[R-h][XTop-1] ; res %= base ; res *= g[C-l][YLeft-1] ; res %= base ;
     cout << res << endl ;
 }
 
